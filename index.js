@@ -160,21 +160,101 @@ function addThreeThings(thing1, thing2, thing3) {
 }
 
 console.log("addThreeThings(1, 2, 3):", addThreeThings(1, 2, 3))
+console.log("addThreeThings(1, 2, 3, 4, 5, 6, 7):", addThreeThings(1, 2, 3, 4, 5, 6, 7))
+console.log("addThreeThings('1'):", addThreeThings('1'))
 var this_is_snake_case // Not used in JS
 
 console.log("addThreeThings('1', '2', '3'):", addThreeThings('1', '2', '3'))
 console.log("addThreeThings('1', 2, '3'):", addThreeThings('1', 2, '3'))
 
 var foo = function () {
-  console.log("Inside my anonymous function");
+  console.log("Inside my anonymous function")
 }
-console.log("typeof(foo):", typeof(foo));
-console.log("foo:", foo);
-foo();
+console.log("typeof(foo):", typeof(foo))
+console.log("foo:", foo)
+foo()
 
 var foo2 = foo
-foo2();
+foo2()
 
 foo = addThreeThings
-console.log("typeof(foo):", typeof(foo));
-console.log("foo:", foo);
+console.log("typeof(foo):", typeof(foo))
+console.log("foo:", foo)
+
+console.log("Printing arr with forEach():")
+arr.forEach(function (elem, idx) {
+  console.log("  -- elem #" + idx + ":", elem)
+})
+
+console.log("Printing arr with forEach() with a named function:")
+function loopBody(elem, idx) {
+  console.log("  -- elem #" + idx + ":", elem)
+}
+arr.forEach(loopBody)
+
+console.log("Printing arr with forEach(), using only third arg:")
+arr.forEach(function (_, _, wholeArr) {
+  console.log("  -- wholeArr:", wholeArr)
+})
+
+function createAFunction() {
+  return function () {
+    return "Returned by the function inside createAFunction()"
+  }
+}
+console.log("createAFunction:", createAFunction)
+console.log("createAFunction():", createAFunction())
+console.log("createAFunction()():", createAFunction()())
+
+console.log("\n====================")
+console.log("== Objects")
+console.log("====================")
+
+var obj = {
+  "cat": "cute",
+  "dog": "loyal",
+  "fish": 100
+}
+console.log("obj:", obj)
+
+var person = {
+  firstName: "Lake",
+  lastName: "Skywalker",
+  getFullName: function () {
+    return this.firstName + " " + this.lastName
+  }
+}
+person.firstName = "Luke"
+console.log("person:", person)
+console.log("person.firstName:", person.firstName)
+console.log("person.getFullName():", person.getFullName())
+console.log("person.getFullName:", person.getFullName)
+
+var fieldName = 'firstName'
+console.log("person[fieldName]:", person[fieldName])
+
+// var person2 = {
+//   firstName: "Leia",
+//   lastName: "Organa",
+//   getFullName: function () {
+//     return this.firstName + " " + this.lastName
+//   }
+// }
+
+function Person(firstName, lastName) {
+  this.firstName = firstName
+  this.lastName = lastName
+  console.log("this.getFullName:", this.getFullName)
+}
+
+Person.prototype.getFullName = function () {
+  return this.firstName + " " + this.lastName
+}
+
+var personFromConstructor = new Person("Leia", "Organa")
+console.log("personFromConstructor:", personFromConstructor)
+console.log("personFromConstructor.getFullName():", personFromConstructor.getFullName())
+
+var personFromConstructor2 = new Person("Rey")
+console.log("personFromConstructor2:", personFromConstructor2)
+console.log("personFromConstructor2.getFullName():", personFromConstructor2.getFullName())
